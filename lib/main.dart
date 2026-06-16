@@ -90,7 +90,7 @@ class MyBlogPage extends StatelessWidget {
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: ListView.builder(
-          itemCount: 2, 
+          itemCount:  dummyPosts.length, 
           scrollDirection: Axis.vertical,
           itemBuilder: (context, index) {
             return BlogCard(post: dummyPosts[index]);
