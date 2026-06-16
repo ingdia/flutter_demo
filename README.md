@@ -82,7 +82,7 @@ itemBuilder: (context, index) {
 
 ## Screenshot
 
-![App Screenshot](screenshot.png)
+![App Screenshot](image.png)
 
 > *Screenshot shows the blog feed with four scrollable post cards.*
 
