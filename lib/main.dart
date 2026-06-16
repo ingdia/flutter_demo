@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+// Entry point — boots the Flutter app
 void main() {
   runApp(const MyApp());
 }
 
+// Data model representing a single blog post
 class BlogPost {
   final String title;
   final String description;
@@ -21,6 +23,7 @@ class BlogPost {
   });
 }
 
+// Sample data simulating a blog feed (4 posts)
 final List<BlogPost> dummyPosts = [
   BlogPost(
     title: 'Getting Started with Flutter',
@@ -90,8 +93,16 @@ class MyBlogPage extends StatelessWidget {
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: ListView.builder(
-          itemCount:  dummyPosts.length, 
+          // Property 1: itemCount — tells Flutter how many items to render;
+          // prevents infinite scroll and index errors
+          itemCount: dummyPosts.length,
+
+          // Property 2: scrollDirection — Axis.vertical scrolls top-to-bottom
+          // (default); change to Axis.horizontal for a carousel layout
           scrollDirection: Axis.vertical,
+
+          // Property 3: itemBuilder — lazily builds only visible items on screen;
+          // more memory-efficient than ListView(children: []) for long lists
           itemBuilder: (context, index) {
             return BlogCard(post: dummyPosts[index]);
           },
@@ -101,6 +112,7 @@ class MyBlogPage extends StatelessWidget {
   }
 }
 
+// Reusable card widget that displays a single blog post
 class BlogCard extends StatelessWidget {
   final BlogPost post;
 
@@ -117,6 +129,7 @@ class BlogCard extends StatelessWidget {
       margin: const EdgeInsets.only(bottom: 16),
       child: InkWell(
         borderRadius: BorderRadius.circular(12),
+        // Shows a snackbar with the post title when tapped
         onTap: () {
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(content: Text('Opened: ${post.title}')),
@@ -134,6 +147,7 @@ class BlogCard extends StatelessWidget {
                   width: 100,
                   height: 100,
                   fit: BoxFit.cover,
+                  // Fallback grey box if the image fails to load
                   errorBuilder: (context, error, stackTrace) {
                     return Container(
                       width: 100,
